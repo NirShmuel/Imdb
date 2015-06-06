@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import exception.InvalidNameException;
 import exception.InvalidRankException;
 
+// I also did change
 public class Main {
 
 	public static void main(String[] args) {
