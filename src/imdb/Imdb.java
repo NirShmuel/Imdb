@@ -1,15 +1,20 @@
 package imdb;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import comparators.MovieDescendingRankComparator;
+import comparators.MovieNameComparator;
 import exception.InvalidNameException;
 import exception.InvalidRankException;
 
-public class Imdb {
 	
+public class Imdb {	
 	
 	// Attributes
 	private Map<String,Movie> movies;
@@ -38,9 +43,29 @@ public class Imdb {
 		}
 		
 	}
-	// add;Matrix;kiano reieves; nir
-	public List<Movie> getTop(){
-		
-	}
 
+	
+	/**
+	 * 
+	 * @param numbint number
+	 * @return
+	 */
+	public List<Movie> getTop(int number) {
+		ArrayList<Movie> myMovies = new ArrayList<Movie>(movies.values());
+		
+		Collections.sort(myMovies,new MovieDescendingRankComparator());		
+		
+		List<Movie> returnMovies = new ArrayList<Movie>();
+		
+		for ( int i = 0 ; i < number && i < myMovies.size() ; i++ ){
+			returnMovies.add(myMovies.get(i));
+		}
+		
+		return returnMovies;	
+	} 
+	
+	public Collection<Movie> getAll(){
+		return movies.values();
+	}
+	
 }

@@ -7,7 +7,7 @@ import exception.InvalidNameException;
 import exception.InvalidRankException;
 import exception.InvalidSetException;
 
-public class Movie {
+public class Movie implements Comparable<Movie>{
 	
 	private String name;
 	private Set<String> actors;
@@ -65,7 +65,7 @@ public class Movie {
 	
 	public void upDateRank(int rank) throws InvalidRankException{
 		double tempRank = numOfVoters * this.rank;
-		if(rank > 0 && rank <= 10){
+		if(rank >= 0 && rank <= 10){
 			numOfVoters++;
 			this.rank = (tempRank + rank) / numOfVoters;
 		} else {
@@ -89,4 +89,18 @@ public class Movie {
 	public String toString(){
 		return this.name + " \n Featuring: " + this.actors + "\n Ranked: " + this.rank + " by: " + this.numOfVoters + " Voters";
 	}
+
+	@Override
+	public int compareTo(Movie o) {
+		if ( this.rank > o.getRank() ){
+			return 1;
+		}else if(this.rank < o.getRank()){
+			return -1;
+		}else{
+			return 0;
+		}
+	}
+
+
+
 }
